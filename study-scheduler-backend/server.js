@@ -9,10 +9,10 @@ app.use(cors({ origin: "http://localhost:3001" })); // Allow frontend access
 
 // PostgreSQL Connection
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: '1234',
+    user: 'ewuni',
+    host: 'dpg-d0lmi98gjchc73f7fq1g-a',
+    database: 'ewuni',
+    password: 'sTGCT89Lvfkjmy5bJjNPbEShPZbHAXIo',
     port: 5432,
 });
 

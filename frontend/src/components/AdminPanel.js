@@ -31,8 +31,8 @@ function AdminPanel() {
         const refreshSchedules = async () => {
             try {
                 const [schedulesResponse, roomsResponse] = await Promise.all([
-                    axios.get("http://localhost:5001/schedules"),
-                    axios.get("http://localhost:5001/rooms")
+                axios.get("https://ewuni.onrender.com/schedules"),
+                axios.get("https://ewuni.onrender.com/rooms")
                 ]);
                 setSchedules(schedulesResponse.data);
                 setRooms(roomsResponse.data);
@@ -45,7 +45,7 @@ function AdminPanel() {
         useEffect(() => {
             const loadRooms = async () => {
                 try {
-                    const response = await axios.get("http://localhost:5001/rooms");
+                    const response = await axios.get("https://ewuni.onrender.com/rooms");
                     setRooms(response.data);
                     console.log("🏫 Rooms loaded:", response.data);
                 } catch (error) {
@@ -57,7 +57,7 @@ function AdminPanel() {
 
     
     useEffect(() => {
-        axios.get("http://localhost:5001/schedules")
+        axios.get("https://ewuni.onrender.com/schedules")
             .then(response => {
                 console.log("📅 Fetched schedules:", response.data);
                 setSchedules(response.data);
@@ -83,7 +83,7 @@ function AdminPanel() {
     
         if (editingRoom) {
             // Edit existing room
-            axios.put(`http://localhost:5001/rooms/${editingRoom.room_id}`, requestData)
+            axios.put(`https://ewuni.onrender.com/rooms/${editingRoom.room_id}`, requestData)
             .then(response => {
                 console.log("✅ Room updated:", response.data);
                 alert("Room updated successfully!");
@@ -99,7 +99,7 @@ function AdminPanel() {
             });
         } else {
             // Add new room
-            axios.post("http://localhost:5001/rooms", requestData)
+            axios.post("https://ewuni.onrender.com/rooms", requestData)
             .then(response => {
                 console.log("✅ Room added:", response.data);
                 setRooms(prevRooms => [...prevRooms, response.data]); // 👈 Adds new room directly
@@ -118,7 +118,7 @@ function AdminPanel() {
     const deleteRoom = (room_id) => {
         if (!window.confirm("Are you sure you want to delete this room?")) return;
     
-        axios.delete(`http://localhost:5001/rooms/${room_id}`)
+        axios.delete(`https://ewuni.onrender.com/rooms/${room_id}`)
         .then(response => {
             console.log("🗑 Room deleted:", response.data);
             setRooms(prevRooms => prevRooms.filter(room => room.room_id !== room_id)); // 👈 Removes deleted room
@@ -145,7 +145,7 @@ function AdminPanel() {
 
         if (editingSchedule) {
             // Edit existing schedule
-            axios.put(`http://localhost:5001/schedules/${editingSchedule.schedule_id}`, requestData)
+            axios.put(`https://ewuni.onrender.com/schedules/${editingSchedule.schedule_id}`, requestData)
             .then(response => {
                 console.log("✅ Schedule updated:", response.data);
                 alert("Schedule updated successfully!");
@@ -157,7 +157,7 @@ function AdminPanel() {
             });
         } else {
             // Add new schedule
-            axios.post("http://localhost:5001/schedules", requestData)
+            axios.post("https://ewuni.onrender.com/schedules", requestData)
             .then(response => {
                 console.log("✅ Schedule added:", response.data);
                 refreshSchedules();
@@ -198,7 +198,7 @@ function AdminPanel() {
     const handleDelete = (schedule_id) => {
         if (!window.confirm("Are you sure you want to delete this schedule?")) return;
 
-        axios.delete(`http://localhost:5001/schedules/${schedule_id}`)
+        axios.delete(`https://ewuni.onrender.com/schedules/${schedule_id}`)
         .then(response => {
             console.log("🗑 Schedule deleted:", response.data);
             alert("Schedule deleted successfully!");

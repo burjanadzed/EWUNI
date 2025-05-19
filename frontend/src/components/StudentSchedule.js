@@ -31,8 +31,8 @@ function StudentSchedule() {
     const refreshSchedules = async () => {
         try {
             const [schedulesResponse, roomsResponse] = await Promise.all([
-                axios.get("http://localhost:5001/schedules"),
-                axios.get("http://localhost:5001/rooms")
+            axios.get("https://ewuni.onrender.com/schedules"),
+            axios.get("https://ewuni.onrender.com/rooms")
             ]);
             setSchedules(schedulesResponse.data);
             setRooms(roomsResponse.data);
